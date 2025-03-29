@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 internal class SpeechRecognizer : MonoBehaviour
 {
-    public string LanguageModelDirPath = "SpeechRecognitionSystem/model/english_small";
+    public string LanguageModelDirPath = "";
 
     public void OnDataProviderReady(IAudioProvider audioProvider)
     {
