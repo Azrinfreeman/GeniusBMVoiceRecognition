@@ -23,6 +23,7 @@ public class BackMenuController : MonoBehaviour
 
     public void BackScene()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Home");
     }
     // Update is called once per frame
