@@ -291,6 +291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -382,6 +387,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tree_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}
@@ -479,6 +489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -570,6 +585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tree_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}
@@ -667,6 +687,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -758,6 +783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tree_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0fae6481a8922bd4e8fbe4db4b82c01b,
         type: 3}

@@ -18,7 +18,7 @@ namespace Gigadrillgames.AUP.Common
     {
         public static void Message(string tag, string message)
         {
-            Debug.LogWarning(tag + message);
+            //Debug.LogWarning(tag + message);
         }
 
         //take screen shot then share via intent
@@ -125,11 +125,11 @@ namespace Gigadrillgames.AUP.Common
                 formatter.Serialize(stream, obj);
                 stream.Position = 0;
 
-                return (T) formatter.Deserialize(stream);
+                return (T)formatter.Deserialize(stream);
             }
         }
-        
-        public static IEnumerator LoadImage(string url,Action<Texture> LoadTextureHandler, Action LoadTexureFailedHandler)
+
+        public static IEnumerator LoadImage(string url, Action<Texture> LoadTextureHandler, Action LoadTexureFailedHandler)
         {
             using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
             {
@@ -150,8 +150,8 @@ namespace Gigadrillgames.AUP.Common
                 }
             }
         }
-        
-        public static IEnumerator DownloadFile(string url,string fileName,string extension,Action<string> DownloadCompleteHandler, Action<string> DownloadFailedHandler)
+
+        public static IEnumerator DownloadFile(string url, string fileName, string extension, Action<string> DownloadCompleteHandler, Action<string> DownloadFailedHandler)
         {
             using (UnityWebRequest www = UnityWebRequest.Get(url))
             {
@@ -163,19 +163,19 @@ namespace Gigadrillgames.AUP.Common
                 }
                 else
                 {
-                    string savePath = $"{Application.persistentDataPath}/Resources/{fileName}{extension}";        
+                    string savePath = $"{Application.persistentDataPath}/Resources/{fileName}{extension}";
                     File.WriteAllText(savePath, www.downloadHandler.text);
                     DownloadCompleteHandler($"{fileName}{extension}");
                 }
             }
         }
 
-        
+
         public static IEnumerator LoadAudio(string url, AudioType audioType, Action<AudioClip> LoadAudioClipHandler, Action LoadAudioClipFailedHandler)
         {
             // Start a download of the given URL
             UnityWebRequest www = new UnityWebRequest(url);
-            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(url,audioType);
+            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(url, audioType);
             www.downloadHandler = downloadHandler;
             // Wait for download to complete
             yield return www.SendWebRequest();
@@ -192,36 +192,15 @@ namespace Gigadrillgames.AUP.Common
                 www.Dispose();
             }
         }
-        
-        
+
+
         public static IEnumerator LoadAudio2(string url, AudioType audioType, Action<AudioClip> LoadAudioClipHandler, Action LoadAudioClipFailedHandler)
         {
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, audioType))
             {
                 yield return www.SendWebRequest();
 
-                if (www.isNetworkError || www.isHttpError )
-                {
-                    Debug.Log($"Utils::LoadAudio2 Error: {www.error}");
-                    LoadAudioClipFailedHandler();
-                    www.Dispose();
-                }
-                else
-                {
-                   AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
-                   LoadAudioClipHandler(audioClip);
-                   www.Dispose();
-                }
-            }
-        }
-        
-        public static IEnumerator LoadAudi3(string url, AudioType audioType, Action<AudioClip> LoadAudioClipHandler, Action LoadAudioClipFailedHandler)
-        {
-            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, audioType))
-            {
-                yield return www.SendWebRequest();
-
-                if (www.isNetworkError || www.isHttpError )
+                if (www.isNetworkError || www.isHttpError)
                 {
                     Debug.Log($"Utils::LoadAudio2 Error: {www.error}");
                     LoadAudioClipFailedHandler();
@@ -235,7 +214,28 @@ namespace Gigadrillgames.AUP.Common
                 }
             }
         }
-        
+
+        public static IEnumerator LoadAudi3(string url, AudioType audioType, Action<AudioClip> LoadAudioClipHandler, Action LoadAudioClipFailedHandler)
+        {
+            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, audioType))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log($"Utils::LoadAudio2 Error: {www.error}");
+                    LoadAudioClipFailedHandler();
+                    www.Dispose();
+                }
+                else
+                {
+                    AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
+                    LoadAudioClipHandler(audioClip);
+                    www.Dispose();
+                }
+            }
+        }
+
         //https://www.youtube.com/watch?v=n_BXpaifIgk
         // https://docs.unity3d.com/ScriptReference/Video.VideoPlayer.html?_ga=2.176851885.90839000.1585401484-1247180066.1584941848
         // https://www.youtube.com/watch?v=SHzzieQvYi0
@@ -243,7 +243,7 @@ namespace Gigadrillgames.AUP.Common
 
         public static AudioType GetAudioType(String extension)
         {
-            switch ( extension)
+            switch (extension)
             {
                 case ".mp3":
                     return AudioType.MPEG;
@@ -278,7 +278,7 @@ namespace Gigadrillgames.AUP.Common
         // https://stackoverflow.com/questions/16078254/create-audioclip-from-byte
         // https://answers.unity.com/questions/737002/wav-byte-to-audioclip.html
         // https://markheath.net/post/how-to-convert-byte-to-short-or-float
-        private float[] ConvertByteToFloat(byte[] array) 
+        private float[] ConvertByteToFloat(byte[] array)
         {
             // usage
             /*
@@ -288,12 +288,12 @@ namespace Gigadrillgames.AUP.Common
              * 
              */
             float[] floatArr = new float[array.Length / 4];
-            for (int i = 0; i < floatArr.Length; i++) 
+            for (int i = 0; i < floatArr.Length; i++)
             {
-                if (BitConverter.IsLittleEndian) 
+                if (BitConverter.IsLittleEndian)
                     Array.Reverse(array, i * 4, 4);
                 //floatArr[i] = BitConverter.ToSingle(array, i * 4);
-                floatArr[i] = BitConverter.ToSingle(array, i*4) / 0x80000000;
+                floatArr[i] = BitConverter.ToSingle(array, i * 4) / 0x80000000;
             }
             return floatArr;
         }
@@ -302,89 +302,89 @@ namespace Gigadrillgames.AUP.Common
         {
             return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         }
-        
+
         public static void ConvertAndWrite(FileStream fileStream, AudioClip clip)
-		{
+        {
 
-			var samples = new float[clip.samples];
+            var samples = new float[clip.samples];
 
-			clip.GetData(samples, 0);
+            clip.GetData(samples, 0);
 
-			Int16[] intData = new Int16[samples.Length];
-			//converting in 2 float[] steps to Int16[], //then Int16[] to Byte[]
+            Int16[] intData = new Int16[samples.Length];
+            //converting in 2 float[] steps to Int16[], //then Int16[] to Byte[]
 
-			Byte[] bytesData = new Byte[samples.Length * 2];
-			//bytesData array is twice the size of
-			//dataSource array because a float converted in Int16 is 2 bytes.
+            Byte[] bytesData = new Byte[samples.Length * 2];
+            //bytesData array is twice the size of
+            //dataSource array because a float converted in Int16 is 2 bytes.
 
-			int rescaleFactor = 32767; //to convert float to Int16
+            int rescaleFactor = 32767; //to convert float to Int16
 
-			for (int i = 0; i < samples.Length; i++)
-			{
-				intData[i] = (short) (samples[i] * rescaleFactor);
-				Byte[] byteArr = new Byte[2];
-				byteArr = BitConverter.GetBytes(intData[i]);
-				byteArr.CopyTo(bytesData, i * 2);
-			}
+            for (int i = 0; i < samples.Length; i++)
+            {
+                intData[i] = (short)(samples[i] * rescaleFactor);
+                Byte[] byteArr = new Byte[2];
+                byteArr = BitConverter.GetBytes(intData[i]);
+                byteArr.CopyTo(bytesData, i * 2);
+            }
 
-			fileStream.Write(bytesData, 0, bytesData.Length);
-		}
+            fileStream.Write(bytesData, 0, bytesData.Length);
+        }
 
-		public static void WriteHeader(FileStream fileStream, AudioClip clip)
-		{
+        public static void WriteHeader(FileStream fileStream, AudioClip clip)
+        {
 
-			var hz = clip.frequency;
-			var channels = clip.channels;
-			var samples = clip.samples;
+            var hz = clip.frequency;
+            var channels = clip.channels;
+            var samples = clip.samples;
 
-			fileStream.Seek(0, SeekOrigin.Begin);
+            fileStream.Seek(0, SeekOrigin.Begin);
 
-			Byte[] riff = Encoding.UTF8.GetBytes("RIFF");
-			fileStream.Write(riff, 0, 4);
+            Byte[] riff = Encoding.UTF8.GetBytes("RIFF");
+            fileStream.Write(riff, 0, 4);
 
-			Byte[] chunkSize = BitConverter.GetBytes(fileStream.Length - 8);
-			fileStream.Write(chunkSize, 0, 4);
+            Byte[] chunkSize = BitConverter.GetBytes(fileStream.Length - 8);
+            fileStream.Write(chunkSize, 0, 4);
 
-			Byte[] wave = Encoding.UTF8.GetBytes("WAVE");
-			fileStream.Write(wave, 0, 4);
+            Byte[] wave = Encoding.UTF8.GetBytes("WAVE");
+            fileStream.Write(wave, 0, 4);
 
-			Byte[] fmt = Encoding.UTF8.GetBytes("fmt ");
-			fileStream.Write(fmt, 0, 4);
+            Byte[] fmt = Encoding.UTF8.GetBytes("fmt ");
+            fileStream.Write(fmt, 0, 4);
 
-			Byte[] subChunk1 = BitConverter.GetBytes(16);
-			fileStream.Write(subChunk1, 0, 4);
+            Byte[] subChunk1 = BitConverter.GetBytes(16);
+            fileStream.Write(subChunk1, 0, 4);
 
-			//UInt16 two = 2;
-			UInt16 one = 1;
+            //UInt16 two = 2;
+            UInt16 one = 1;
 
-			Byte[] audioFormat = BitConverter.GetBytes(one);
-			fileStream.Write(audioFormat, 0, 2);
+            Byte[] audioFormat = BitConverter.GetBytes(one);
+            fileStream.Write(audioFormat, 0, 2);
 
-			Byte[] numChannels = BitConverter.GetBytes(channels);
-			fileStream.Write(numChannels, 0, 2);
+            Byte[] numChannels = BitConverter.GetBytes(channels);
+            fileStream.Write(numChannels, 0, 2);
 
-			Byte[] sampleRate = BitConverter.GetBytes(hz);
-			fileStream.Write(sampleRate, 0, 4);
+            Byte[] sampleRate = BitConverter.GetBytes(hz);
+            fileStream.Write(sampleRate, 0, 4);
 
-			Byte[]
-				byteRate = BitConverter.GetBytes(hz * channels *
-				                                 2); // sampleRate * bytesPerSample*number of Channels, here 44100*2*2
-			fileStream.Write(byteRate, 0, 4);
+            Byte[]
+                byteRate = BitConverter.GetBytes(hz * channels *
+                                                 2); // sampleRate * bytesPerSample*number of Channels, here 44100*2*2
+            fileStream.Write(byteRate, 0, 4);
 
-			UInt16 blockAlign = (ushort) (channels * 2);
-			fileStream.Write(BitConverter.GetBytes(blockAlign), 0, 2);
+            UInt16 blockAlign = (ushort)(channels * 2);
+            fileStream.Write(BitConverter.GetBytes(blockAlign), 0, 2);
 
-			UInt16 bps = 16;
-			Byte[] bitsPerSample = BitConverter.GetBytes(bps);
-			fileStream.Write(bitsPerSample, 0, 2);
+            UInt16 bps = 16;
+            Byte[] bitsPerSample = BitConverter.GetBytes(bps);
+            fileStream.Write(bitsPerSample, 0, 2);
 
-			Byte[] datastring = Encoding.UTF8.GetBytes("data");
-			fileStream.Write(datastring, 0, 4);
+            Byte[] datastring = Encoding.UTF8.GetBytes("data");
+            fileStream.Write(datastring, 0, 4);
 
-			Byte[] subChunk2 = BitConverter.GetBytes(samples * channels * 2);
-			fileStream.Write(subChunk2, 0, 4);
+            Byte[] subChunk2 = BitConverter.GetBytes(samples * channels * 2);
+            fileStream.Write(subChunk2, 0, 4);
 
-			fileStream.Close();
-		}
+            fileStream.Close();
+        }
     }
 }

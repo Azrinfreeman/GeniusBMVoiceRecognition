@@ -14,12 +14,12 @@ namespace Gigadrillgames.AUP.SpeechTTS
         private const string TAG = "[SpeechRecognizerDemo]: ";
         public List<double> comparisonList;
         public Image MicButton;
+
         [SerializeField]
         private SpeechPlugin speechPlugin;
-        public Text resultText;
-        public Text partialResultText;
-        public Text statusText;
-
+        public TextMeshProUGUI resultText;
+        public TextMeshProUGUI partialResultText;
+        public TextMeshProUGUI statusText;
 
         public SpeechExtraLocale currentExtraLocale = SpeechExtraLocale.MY;
 
@@ -189,8 +189,6 @@ namespace Gigadrillgames.AUP.SpeechTTS
             MicButton = transform.GetChild(0).transform.GetChild(3).GetComponent<Image>();
             MicButton.color = Color.red;
 
-
-
             dispatcher = Dispatcher.GetInstance();
             // for accessing audio
             utilsPlugin = UtilsPlugin.GetInstance();
@@ -202,13 +200,7 @@ namespace Gigadrillgames.AUP.SpeechTTS
             speechPlugin.SetDebug(0);
 
             AddSpeechPluginListener();
-
-
-
-
-
         }
-
 
         private void OnEnable()
         {
@@ -518,7 +510,7 @@ namespace Gigadrillgames.AUP.SpeechTTS
 
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
-                    resultText.text = string.Format("Result: {0}", whatToSay);
+                    resultText.text = "Result: " + whatToSay;
 
                     CalculateProgress(whatToSay);
                 }
@@ -546,7 +538,7 @@ namespace Gigadrillgames.AUP.SpeechTTS
 
                     //sample showing the nearest result
                     string whatToSay = results.GetValue(0).ToString();
-                    partialResultText.text = string.Format("Partial Result: {0}", whatToSay);
+                    partialResultText.text = "Partial Result: " + whatToSay;
                 }
             });
         }

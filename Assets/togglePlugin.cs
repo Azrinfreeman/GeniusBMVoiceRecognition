@@ -34,12 +34,14 @@ public class togglePlugin : MonoBehaviour
             {
                 isToggle = true;
                 anim.Play("accurateAnim");
+                PluginController.instance.ShowRightPlugin();
                 CheckInternet.instance.wifiConnectionText.text = "wifi is connected, switching to accurate";
             }
             else
             {
                 isToggle = false;
                 anim.Play("normalAnim");
+                PluginController.instance.ShowRightPlugin();
                 CheckInternet.instance.wifiConnectionText.text = "wifi is connected, switching to normal accuracy";
             }
         }
