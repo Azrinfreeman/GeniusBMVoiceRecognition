@@ -409,6 +409,8 @@ MonoBehaviour:
     - pocket
     - look at
     - pukat
+    - who get
+    - who got
     level: 2
   - name: qa<color="red">ri
     compare:
