@@ -349,6 +349,8 @@ MonoBehaviour:
     - ba!
     - bye
     - bar
+    - but
+    - back
     level: 1
   - name: bi
     compare:

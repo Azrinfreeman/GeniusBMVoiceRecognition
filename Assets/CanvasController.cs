@@ -17,9 +17,13 @@ public class CanvasController : MonoBehaviour
     }
 
 
-    void OnEnable()
+    public void StartQuestion()
     {
         PluginController.instance.ShowRightPlugin();
         CheckInternet.instance.CheckingNetwork();
+    }
+    void OnEnable()
+    {
+
     }
 }

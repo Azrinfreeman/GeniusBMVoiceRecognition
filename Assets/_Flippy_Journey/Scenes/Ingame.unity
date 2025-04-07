@@ -342,6 +342,21 @@ PrefabInstance:
       propertyPath: buttonNext
       value: 
       objectReference: {fileID: 942784740}
+    - target: {fileID: 3567492758359789813, guid: a97fdc31094a01de096d339140aac83b,
+        type: 3}
+      propertyPath: questionLists.Array.data[0].compare.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567492758359789813, guid: a97fdc31094a01de096d339140aac83b,
+        type: 3}
+      propertyPath: questionLists.Array.data[0].compare.Array.data[7]
+      value: back
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567492758359789813, guid: a97fdc31094a01de096d339140aac83b,
+        type: 3}
+      propertyPath: questionLists.Array.data[0].compare.Array.data[8]
+      value: but
+      objectReference: {fileID: 0}
     - target: {fileID: 4756160484084398684, guid: a97fdc31094a01de096d339140aac83b,
         type: 3}
       propertyPath: m_Name
@@ -3371,7 +3386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &439548073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3615,7 +3630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &464381959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4187,7 +4202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 428}
+  m_AnchoredPosition: {x: 1.1641532e-10, y: 427.99988}
   m_SizeDelta: {x: 1920, y: 738.33}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &545057207
@@ -5077,7 +5092,7 @@ RectTransform:
   m_Father: {fileID: 318426316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10657,7 +10672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &858882574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10942,7 +10957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: result
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80e00bf0118e054429faf0a0af790f45, type: 2}
   m_sharedMaterial: {fileID: 2022067232415461164, guid: 80e00bf0118e054429faf0a0af790f45,
@@ -11030,7 +11045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &942784740
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14673,6 +14688,42 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 942784739}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 439548072}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 380752840}
+        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
+        m_MethodName: StartQuestion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1386117775
 MonoBehaviour:
@@ -22403,27 +22454,29 @@ MonoBehaviour:
     maxPlayerMovementSpeed: 12
     minPlayerJumpingPoints: 45
     maxPlayerJumpingPoints: 50
-    minCoinItemAmount: 1
-    maxCoinItemAmount: 4
+    minCoinItemAmount: 4
+    maxCoinItemAmount: 6
     magnetItemFrequency: 0.06
     shieldItemFrequency: 0.04
     listPlatformConfiguration:
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
+    - minPlatformAmount: 6
+      maxPlatformAmount: 6
       platformCreationType: 0
       listPlatformSize: 0300000004000000
-      listObstacleType: 00000000
+      listObstacleType: 0200000000000000
       listObstacleAmountConfiguration:
-      - obstacleAmount: 0
-        frequency: 0.5
+      - obstacleAmount: 2
+        frequency: 0.73
       - obstacleAmount: 1
-        frequency: 0.3
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
+        frequency: 0.434
+    - minPlatformAmount: 6
+      maxPlatformAmount: 7
       platformCreationType: 1
       listPlatformSize: 0300000004000000
-      listObstacleType: 
-      listObstacleAmountConfiguration: []
+      listObstacleType: 03000000
+      listObstacleAmountConfiguration:
+      - obstacleAmount: 1
+        frequency: 0.924
   - minLevel: 2
     maxLevel: 3
     backgroundTopColor: {r: 0, g: 1, b: 0.57125473, a: 1}
@@ -22440,22 +22493,24 @@ MonoBehaviour:
     magnetItemFrequency: 0.06
     shieldItemFrequency: 0.04
     listPlatformConfiguration:
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
-      platformCreationType: 1
-      listPlatformSize: 0300000004000000
-      listObstacleType: 
-      listObstacleAmountConfiguration: []
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
+    - minPlatformAmount: 6
+      maxPlatformAmount: 6
       platformCreationType: 0
       listPlatformSize: 0300000004000000
-      listObstacleType: 00000000
+      listObstacleType: 0100000000000000
       listObstacleAmountConfiguration:
-      - obstacleAmount: 0
-        frequency: 0.6
       - obstacleAmount: 1
-        frequency: 0.4
+        frequency: 0.311
+      - obstacleAmount: 1
+        frequency: 0.708
+    - minPlatformAmount: 6
+      maxPlatformAmount: 6
+      platformCreationType: 0
+      listPlatformSize: 0300000004000000
+      listObstacleType: 02000000
+      listObstacleAmountConfiguration:
+      - obstacleAmount: 1
+        frequency: 0.6
   - minLevel: 3
     maxLevel: 4
     backgroundTopColor: {r: 0.1921947, g: 1, b: 0, a: 1}
@@ -22472,22 +22527,24 @@ MonoBehaviour:
     magnetItemFrequency: 0.07
     shieldItemFrequency: 0.05
     listPlatformConfiguration:
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
+    - minPlatformAmount: 6
+      maxPlatformAmount: 6
       platformCreationType: 2
-      listPlatformSize: 0400000002000000
-      listObstacleType: 
-      listObstacleAmountConfiguration: []
-    - minPlatformAmount: 2
-      maxPlatformAmount: 2
+      listPlatformSize: 0300000004000000
+      listObstacleType: 0300000001000000
+      listObstacleAmountConfiguration:
+      - obstacleAmount: 1
+        frequency: 0.67
+      - obstacleAmount: 1
+        frequency: 0.236
+    - minPlatformAmount: 6
+      maxPlatformAmount: 6
       platformCreationType: 3
       listPlatformSize: 0300000002000000
-      listObstacleType: 00000000
+      listObstacleType: 01000000
       listObstacleAmountConfiguration:
-      - obstacleAmount: 0
-        frequency: 0.6
       - obstacleAmount: 1
-        frequency: 0.4
+        frequency: 0.6
   backgroundMaterial: {fileID: 2100000, guid: 495abee046a8a7945abd0243dfff0e99, type: 2}
   finishPlatformController: {fileID: 131631351}
   platformLayerMask:
@@ -22970,6 +23027,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 942784739}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 439548072}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 380752840}
+        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
+        m_MethodName: StartQuestion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1871522591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23369,6 +23462,42 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 942784739}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 439548072}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 380752840}
+        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
+        m_MethodName: StartQuestion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1907084332
 MonoBehaviour:
