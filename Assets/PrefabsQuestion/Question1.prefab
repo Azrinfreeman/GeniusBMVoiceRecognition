@@ -440,6 +440,7 @@ MonoBehaviour:
     - fah
     - fa
     - Fa.
+    - Far
     level: 1
   - name: fi
     compare:
@@ -563,6 +564,7 @@ MonoBehaviour:
     - lie
     - Lah.
     - La.
+    - last
     level: 1
   - name: li
     compare:
@@ -815,6 +817,16 @@ MonoBehaviour:
     - zulu.
     - zu.
     - juh.
+    level: 1
+  - name: vu
+    compare:
+    - vo
+    - vu
+    - whoa
+    - lou
+    - lu.
+    - wow
+    - buu!
     level: 1
   - name: vu
     compare:
