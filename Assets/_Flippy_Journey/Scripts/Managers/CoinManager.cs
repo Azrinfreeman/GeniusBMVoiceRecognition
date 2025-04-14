@@ -6,19 +6,22 @@ namespace ClawbearGames
     public class CoinManager : MonoBehaviour
     {
         [Header("Coin Manager Configuration")]
-        [SerializeField] private int initialCoins = 0;
-        [SerializeField] private int minRewardedCoins = 100;
-        [SerializeField] private int maxRewardedCoins = 150;
+        [SerializeField]
+        private int initialCoins = 0;
+
+        [SerializeField]
+        private int minRewardedCoins = 100;
+
+        [SerializeField]
+        private int maxRewardedCoins = 150;
 
         public int CollectedCoins { private set; get; }
-
 
         public int TotalCoins
         {
             private set { PlayerPrefs.SetInt(PlayerPrefsKeys.PPK_TOTAL_COINS, value); }
             get { return PlayerPrefs.GetInt(PlayerPrefsKeys.PPK_TOTAL_COINS, initialCoins); }
         }
-
 
         /// <summary>
         /// Add collected coins by given amount
@@ -29,7 +32,6 @@ namespace ClawbearGames
             CollectedCoins += amount;
         }
 
-
         /// <summary>
         /// Set the CollectedCoins by the given amount.
         /// </summary>
@@ -39,7 +41,6 @@ namespace ClawbearGames
             CollectedCoins = amount;
         }
 
-
         /// <summary>
         /// Get an amount of coins to reward to user.
         /// </summary>
@@ -48,9 +49,6 @@ namespace ClawbearGames
         {
             return Random.Range(minRewardedCoins, maxRewardedCoins) / 5 * 5;
         }
-
-
-
 
         /// <summary>
         /// Add an amount of coins for TotalCoins with given delay time.
@@ -62,7 +60,6 @@ namespace ClawbearGames
             StartCoroutine(CRAddTotalCoins(amount, delay));
         }
 
-
         /// <summary>
         /// Coroutine add an amount of coins for TotalCoins with given delay time.
         /// </summary>
@@ -71,7 +68,9 @@ namespace ClawbearGames
         /// <returns></returns>
         private IEnumerator CRAddTotalCoins(int amount, float delay)
         {
-            ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Rewarded);
+            ServicesManager.Instance.SoundManager.PlaySound(
+                ServicesManager.Instance.SoundManager.Rewarded
+            );
             yield return new WaitForSeconds(delay);
             float t = 0;
             float runTime = 0.25f;
@@ -81,13 +80,18 @@ namespace ClawbearGames
             {
                 t += Time.deltaTime;
                 float factor = EasyType.MatchedLerpType(LerpType.EaseOutQuad, t / runTime);
-                int newTotalCoins = Mathf.RoundToInt(Mathf.Lerp(startTotalCoins, endTotalCoins, factor));
+                int newTotalCoins = Mathf.RoundToInt(
+                    Mathf.Lerp(startTotalCoins, endTotalCoins, factor)
+                );
                 TotalCoins = newTotalCoins;
                 yield return null;
             }
+
+            PlayerPrefs.SetInt(
+                "CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"),
+                TotalCoins
+            );
         }
-
-
 
         /// <summary>
         /// Add an amount of coins for CollectedCoins with given delay time.
@@ -99,7 +103,6 @@ namespace ClawbearGames
             StartCoroutine(CRAddCollectedCoins(amount, delay));
         }
 
-
         /// <summary>
         /// Coroutine add an amount of coins for CollectedCoins with given delay time.
         /// </summary>
@@ -108,7 +111,9 @@ namespace ClawbearGames
         /// <returns></returns>
         private IEnumerator CRAddCollectedCoins(int amount, float delay)
         {
-            ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Rewarded);
+            ServicesManager.Instance.SoundManager.PlaySound(
+                ServicesManager.Instance.SoundManager.Rewarded
+            );
             yield return new WaitForSeconds(delay);
             float t = 0;
             float runTime = 0.25f;
@@ -118,14 +123,13 @@ namespace ClawbearGames
             {
                 t += Time.deltaTime;
                 float factor = EasyType.MatchedLerpType(LerpType.EaseOutQuad, t / runTime);
-                int newCollectedCoins = Mathf.RoundToInt(Mathf.Lerp(startCollectedCoins, endCollectedCoins, factor));
+                int newCollectedCoins = Mathf.RoundToInt(
+                    Mathf.Lerp(startCollectedCoins, endCollectedCoins, factor)
+                );
                 SetCollectedCoins(newCollectedCoins);
                 yield return null;
             }
         }
-
-
-
 
         /// <summary>
         /// Remove an amount of total coins.
@@ -135,7 +139,6 @@ namespace ClawbearGames
         {
             StartCoroutine(CRRemoveTotalCoins(amount, delay));
         }
-
 
         /// <summary>
         /// Coroutine remove an amount of total coins.
@@ -154,7 +157,9 @@ namespace ClawbearGames
             {
                 t += Time.deltaTime;
                 float factor = EasyType.MatchedLerpType(LerpType.EaseOutQuad, t / runTime);
-                int newTotalCoins = Mathf.RoundToInt(Mathf.Lerp(startTotalCoins, endTotalCoins, factor));
+                int newTotalCoins = Mathf.RoundToInt(
+                    Mathf.Lerp(startTotalCoins, endTotalCoins, factor)
+                );
                 TotalCoins = newTotalCoins;
                 yield return null;
             }

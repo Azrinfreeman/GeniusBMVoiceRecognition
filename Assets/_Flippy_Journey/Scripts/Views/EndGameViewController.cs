@@ -113,6 +113,7 @@ namespace ClawbearGames
 
         public void OnClickClaimButton()
         {
+
             ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);
             ServicesManager.Instance.CoinManager.AddTotalCoins(ServicesManager.Instance.CoinManager.CollectedCoins, 0.25f);
             collectedCoinsCanvasGroup.gameObject.SetActive(false);

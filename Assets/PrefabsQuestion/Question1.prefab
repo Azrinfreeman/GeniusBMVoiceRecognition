@@ -417,6 +417,7 @@ MonoBehaviour:
     - that
     - da.
     - Da.
+    - yeah
     level: 1
   - name: di
     compare:
@@ -441,6 +442,7 @@ MonoBehaviour:
     - fa
     - Fa.
     - Far
+    - five
     level: 1
   - name: fi
     compare:
