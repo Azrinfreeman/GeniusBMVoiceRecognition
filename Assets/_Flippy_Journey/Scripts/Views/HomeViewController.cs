@@ -60,14 +60,20 @@ namespace ClawbearGames
 
         [SerializeField]
         private Text totalCoinsText = null;
+        [SerializeField]
+        private Text totalTrophyText = null;
         private int settingButtonTurn = 1;
 
         private void Update()
         {
-            //totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
+            totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
             totalCoinsText.text = PlayerPrefs
                 .GetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
                 .ToString();
+
+            totalTrophyText.text = PlayerPrefs
+            .GetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
+            .ToString();
         }
 
         public void ExitApp()

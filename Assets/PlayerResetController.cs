@@ -16,9 +16,9 @@ public class PlayerResetController : MonoBehaviour
 
     public void ResetData()
     {
-        PlayerPrefs.SetInt("RoundsCollected_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
+        PlayerPrefs.SetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
 
-        PlayerPrefs.SetInt("StarsCollected_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
+        PlayerPrefs.SetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
 
         GetComponent<Animator>().Play("dismiss");
     }

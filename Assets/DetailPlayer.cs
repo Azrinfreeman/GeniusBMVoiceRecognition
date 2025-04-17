@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System;
 public class DetailPlayer : MonoBehaviour
 {
+    public TransformController transformController;
     public int no;
     public TextMeshProUGUI noText;
     public TextMeshProUGUI names;
@@ -16,6 +17,7 @@ public class DetailPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transformController = transform.parent.GetComponent<TransformController>();
         playerDelete = transform.parent.transform.parent.transform.parent.transform.parent.transform.GetChild(1).transform;
         no = transform.GetSiblingIndex();
         noText = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -32,7 +34,7 @@ public class DetailPlayer : MonoBehaviour
         noText = transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         names = transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         button = transform.GetChild(0).transform.GetChild(2).GetComponent<Button>();
-        ApplyAgain();
+        //ApplyAgain();
     }
 
     public void ApplyAgain()
@@ -41,12 +43,12 @@ public class DetailPlayer : MonoBehaviour
         button.transform.gameObject.SetActive(true);
         //Debug.Log());
         names.text = PlayerPrefs.GetString(
-            TransformController.instance.userCollection[transform.GetSiblingIndex()]
+            transformController.userCollection[transform.GetSiblingIndex()]
         );
 
         if (PlayerPrefs.GetInt("PlayerTotal") > 1)
         {
-            if (PlayerPrefs.GetString(TransformController.instance.userCollection[transform.GetSiblingIndex()]) == PlayerPrefs.GetString("CurrentPlayer_"))
+            if (PlayerPrefs.GetString(transformController.userCollection[transform.GetSiblingIndex()]) == PlayerPrefs.GetString("CurrentPlayer_"))
             {
                 transform.GetChild(0).GetComponent<Image>().color = new Color32(144, 0, 255, 255);
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "DELETE";
@@ -62,7 +64,7 @@ public class DetailPlayer : MonoBehaviour
         }
         else
         {
-            string tempNom = TransformController.instance.userCollection[0];
+            string tempNom = transformController.userCollection[0];
             string nom = tempNom.Substring(tempNom.Length - 1);
             if (Int32.Parse(nom) == PlayerPrefs.GetInt("CurrentPlayerNo_"))
             {
@@ -79,12 +81,18 @@ public class DetailPlayer : MonoBehaviour
     }
     public void TukarPlayer()
     {
-        string tempNom = TransformController.instance.userCollection[transform.GetSiblingIndex()];
+        GameObject.Find("canvs").GetComponent<GameStartupController>().ApplyScoreAgain();
+        string tempNom = transformController.userCollection[transform.GetSiblingIndex()];
         string nom = tempNom.Substring(tempNom.Length - 1);
         PlayerPrefs.SetString("CurrentPlayer_", PlayerPrefs.GetString(tempNom));
         PlayerPrefs.SetInt("CurrentPlayerNo_", Int32.Parse(nom));
+        PlayerPrefs.SetString(
+            "CurrentPlayerid_",
+            PlayerPrefs.GetString(transformController.userIdCollection[transform.GetSiblingIndex()])
+        );
+
         CurrentPlayerName.instance.ApplyName();
-        TransformController.instance.DismissPlayerSelect();
+        transformController.DismissPlayerSelect();
 
     }
 

@@ -81,6 +81,10 @@ public class QuestionController : MonoBehaviour
         SimilarityCalculator.instance.percentage = 0f;
         buttonNext.gameObject.SetActive(false);
         numQuestion++;
+        PlayerPrefs.SetInt(
+            "CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"),
+            PlayerPrefs.GetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_")) + 1
+        );
         // Debug.Log(questionLists[0].name);
 
         if (numQuestion > questionLists.Length)
@@ -132,6 +136,10 @@ public class QuestionController : MonoBehaviour
     public void NextRound()
     {
         numQuestion++;
+        PlayerPrefs.SetInt(
+            "CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"),
+            PlayerPrefs.GetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_")) + 1
+        );
         if (numQuestion > questionLists.Length - 1)
         {
             numQuestion = 0;

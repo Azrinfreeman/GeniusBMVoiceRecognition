@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class TransformController : MonoBehaviour
 {
-    public static TransformController instance;
+    //public static TransformController instance;
     public List<string> userCollection;
+    public List<string> userIdCollection;
     public Transform childrenContentPrefab;
 
     private void Awake()
     {
-        instance = this;
+        //  instance = this;
     }
 
     public Transform contentHeight;
@@ -56,7 +57,7 @@ public class TransformController : MonoBehaviour
 
         contentHeight.GetComponent<RectTransform>().sizeDelta = new Vector2(
             800,
-            200 * listClones.Count
+            150 * listClones.Count
         );
     }
 
@@ -102,9 +103,11 @@ public class TransformController : MonoBehaviour
     IEnumerator fetchRanking()
     {
         Debug.Log("fetchRanking");
+        userIdCollection.Clear();
+        userCollection.Clear();
         using (
             UnityWebRequest www = UnityWebRequest.Get(
-                "https://hananaelearning.com/funmath/fetchRanking.php"
+                "https://app-hanana.com/gbmsuara/fetchRanking.php"
             )
         )
         {
@@ -178,6 +181,7 @@ public class TransformController : MonoBehaviour
 
     public void AddPrefab()
     {
+        userIdCollection.Clear();
         userCollection.Clear();
         for (int i = 0; i < 20; i++)
         {
@@ -195,6 +199,7 @@ public class TransformController : MonoBehaviour
                 //  Debug.Log(i);
 
                 userCollection.Add("Player_" + i);
+                userIdCollection.Add("Playerid_" + i);
                 //if not empty add to content
                 Transform content = Instantiate(
                     childrenContentPrefab,

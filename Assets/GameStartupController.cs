@@ -32,22 +32,26 @@ public class GameStartupController : MonoBehaviour
         {
             WWWForm form = new WWWForm();
 
-            if (PlayerPrefs.GetInt("RoundsCollected_" + PlayerPrefs.GetInt("CurrentPlayerNo_")) < 0)
+            if (PlayerPrefs.GetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_")) < 0)
             {
-                PlayerPrefs.SetInt("RoundsCollected_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
+                PlayerPrefs.SetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), 0);
             }
 
             form.AddField("PlayerName", PlayerPrefs.GetString("CurrentPlayer_"));
             form.AddField("Playerid", PlayerPrefs.GetString("CurrentPlayerid_"));
             form.AddField(
-                "totalMark",
-                PlayerPrefs.GetInt("RoundsCollected_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
+                "totalStars",
+                PlayerPrefs.GetInt("CURRENT_TROPHY_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
+            );
+            form.AddField(
+                "totalRounds",
+                PlayerPrefs.GetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
             );
             form.AddField("deviceName", SystemInfo.deviceName);
 
             using (
                 UnityWebRequest www = UnityWebRequest.Post(
-                    "https://hananaelearning.com/jawimodul2/insertmark.php",
+                    "https://app-hanana.com/gbmsuara/insertmark.php",
                     form
                 )
             )
@@ -63,17 +67,21 @@ public class GameStartupController : MonoBehaviour
                 }
                 else
                 {
-                    if (www.downloadHandler.text.Equals("Insert Successful"))
+                    string retrieveData = www.downloadHandler.text.Trim();
+                    if (retrieveData.Equals("Insert Successful"))
                     {
+                        Debug.Log(retrieveData);
                         Debug.Log("First time user");
                     }
-                    else if (www.downloadHandler.text.Equals("Update Successful"))
+                    else if (retrieveData.Equals("Update Successful"))
                     {
+                        Debug.Log(retrieveData);
                         Debug.Log("Existing user");
                     }
                     else
                     {
                         Debug.Log("Something else");
+                        Debug.Log(retrieveData);
                     }
                 }
             }
@@ -82,7 +90,7 @@ public class GameStartupController : MonoBehaviour
 
     public void ApplyScoreAgain()
     {
-        //StartCoroutine(InsertScoreToDB());
+        StartCoroutine(InsertScoreToDB());
     }
 
     public void SaveNewPlayerName(string name, string id)
@@ -93,11 +101,37 @@ public class GameStartupController : MonoBehaviour
             PlayerPrefs.SetString("Playerid_0", id);
             PlayerPrefs.SetInt("PlayerTotal", PlayerPrefs.GetInt("PlayerTotal") + 1);
         }
-        else
+        else if (PlayerPrefs.GetInt("PlayerTotal") > 0)
         {
-            PlayerPrefs.SetString("Player_" + PlayerPrefs.GetInt("PlayerTotal"), name);
-            PlayerPrefs.SetString("Playerid_" + PlayerPrefs.GetInt("PlayerTotal"), id);
-            PlayerPrefs.SetInt("PlayerTotal", PlayerPrefs.GetInt("PlayerTotal") + 1);
+            string str = PlayerPrefs.GetString("Player_" + PlayerPrefs.GetInt("PlayerTotal"));
+
+            if (string.IsNullOrEmpty(str) == true)
+            {
+                Debug.Log("empty");
+                PlayerPrefs.SetString("Player_" + PlayerPrefs.GetInt("PlayerTotal"), name);
+                PlayerPrefs.SetString("Playerid_" + PlayerPrefs.GetInt("PlayerTotal"), id);
+                PlayerPrefs.SetInt("PlayerTotal", PlayerPrefs.GetInt("PlayerTotal") + 1);
+            }
+            else
+            {
+                int newPlayerTotal = PlayerPrefs.GetInt("PlayerTotal") + 1;
+                string str2 = PlayerPrefs.GetString("Player_" + 0);
+                int a = 0;
+                while (a < 100)
+                {
+                    str2 = PlayerPrefs.GetString("Player_" + a);
+                    if (string.IsNullOrEmpty(str2))
+                    {
+                        Debug.Log("existing player");
+                        PlayerPrefs.SetString("Player_" + a, name);
+                        PlayerPrefs.SetString("Playerid_" + a, id);
+                        PlayerPrefs.SetInt("PlayerTotal", PlayerPrefs.GetInt("PlayerTotal") + 1);
+                        a = 101;
+                    }
+                    a++;
+                }
+
+            }
         }
     }
 
