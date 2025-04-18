@@ -38,7 +38,10 @@ namespace ClawbearGames
             }
 
             //Update texts
-            totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
+            //totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
+            totalCoinsText.text = PlayerPrefs
+                .GetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
+                .ToString();
         }
 
 

@@ -145,7 +145,7 @@ public class TransformController : MonoBehaviour
 
 
                     //name
-                    //                  Debug.Log(rankings.ranking[i].nama);
+                    Debug.Log(rankings.ranking[i].nama);
                     //score
                     //                Debug.Log(rankings.ranking[i].score.ToString());
                     if (
