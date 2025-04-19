@@ -19,8 +19,8 @@ namespace ClawbearGames
 
         public int TotalCoins
         {
-            private set { PlayerPrefs.SetInt(PlayerPrefsKeys.PPK_TOTAL_COINS, value); }
-            get { return PlayerPrefs.GetInt(PlayerPrefsKeys.PPK_TOTAL_COINS, initialCoins); }
+            private set { PlayerPrefs.SetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), value); }
+            get { return PlayerPrefs.GetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"), initialCoins); }
         }
 
         /// <summary>

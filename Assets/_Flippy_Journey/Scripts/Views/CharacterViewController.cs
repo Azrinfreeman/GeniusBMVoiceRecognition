@@ -5,25 +5,37 @@ namespace ClawbearGames
 {
     public class CharacterViewController : BaseViewController
     {
-        [SerializeField] private CanvasGroup canvasGroup = null;
-        [SerializeField] private RectTransform topPanelTrans = null;
-        [SerializeField] private RectTransform bottomPanelTrans = null;
-        [SerializeField] private Button selectButton = null;
-        [SerializeField] private Button unlockButton = null;
-        [SerializeField] private Text totalCoinsText = null;
-        [SerializeField] private Text charPriceText = null;
+        [SerializeField]
+        private CanvasGroup canvasGroup = null;
 
+        [SerializeField]
+        private RectTransform topPanelTrans = null;
+
+        [SerializeField]
+        private RectTransform bottomPanelTrans = null;
+
+        [SerializeField]
+        private Button selectButton = null;
+
+        [SerializeField]
+        private Button unlockButton = null;
+
+        [SerializeField]
+        private Text totalCoinsText = null;
+
+        [SerializeField]
+        private Text charPriceText = null;
 
         private CharacterManager characterManager = null;
         private CharacterInforController currentCharacterInforController = null;
 
-
         private void Update()
         {
-            totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
+            //  totalCoinsText.text = ServicesManager.Instance.CoinManager.TotalCoins.ToString();
+            totalCoinsText.text = PlayerPrefs
+                .GetInt("CURRENT_COINS_PLAYER_" + PlayerPrefs.GetInt("CurrentPlayerNo_"))
+                .ToString();
         }
-
-
 
         /// <summary>
         ////////////////////////////////////////////////// Public Functions
@@ -33,8 +45,18 @@ namespace ClawbearGames
         public override void OnShow()
         {
             FadeInCanvasGroup(canvasGroup, 0.75f);
-            MoveRectTransform(topPanelTrans, topPanelTrans.anchoredPosition, new Vector2(topPanelTrans.anchoredPosition.x, 0), 0.5f);
-            MoveRectTransform(bottomPanelTrans, bottomPanelTrans.anchoredPosition, new Vector2(bottomPanelTrans.anchoredPosition.x, 0), 0.5f);
+            MoveRectTransform(
+                topPanelTrans,
+                topPanelTrans.anchoredPosition,
+                new Vector2(topPanelTrans.anchoredPosition.x, 0),
+                0.5f
+            );
+            MoveRectTransform(
+                bottomPanelTrans,
+                bottomPanelTrans.anchoredPosition,
+                new Vector2(bottomPanelTrans.anchoredPosition.x, 0),
+                0.5f
+            );
 
             if (characterManager == null)
             {
@@ -46,12 +68,12 @@ namespace ClawbearGames
         {
             canvasGroup.alpha = 0f;
             topPanelTrans.anchoredPosition = new Vector2(topPanelTrans.anchoredPosition.x, 150f);
-            bottomPanelTrans.anchoredPosition = new Vector2(topPanelTrans.anchoredPosition.x, -500f);
+            bottomPanelTrans.anchoredPosition = new Vector2(
+                topPanelTrans.anchoredPosition.x,
+                -500f
+            );
             gameObject.SetActive(false);
         }
-
-
-
 
         /// <summary>
         /// Update the UI base on given CharacterInforController.
@@ -65,7 +87,9 @@ namespace ClawbearGames
                 selectButton.gameObject.SetActive(false);
                 unlockButton.gameObject.SetActive(true);
                 charPriceText.text = characterInfor.CharacterPrice.ToString();
-                if (ServicesManager.Instance.CoinManager.TotalCoins >= characterInfor.CharacterPrice)
+                if (
+                    ServicesManager.Instance.CoinManager.TotalCoins >= characterInfor.CharacterPrice
+                )
                 {
                     //Enough coins -> allow user buy this skin
                     unlockButton.interactable = true;
@@ -76,13 +100,12 @@ namespace ClawbearGames
                     unlockButton.interactable = false;
                 }
             }
-            else//The skin is already unlocked
+            else //The skin is already unlocked
             {
                 unlockButton.gameObject.SetActive(false);
                 selectButton.gameObject.SetActive(true);
             }
         }
-
 
         /// <summary>
         ////////////////////////////////////////////////// UI Buttons
@@ -97,14 +120,20 @@ namespace ClawbearGames
 
         public void OnClickSelectButton()
         {
-            ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);
-            ServicesManager.Instance.CharacterContainer.SetSelectedCharacterIndex(currentCharacterInforController.SequenceNumber);
+            ServicesManager.Instance.SoundManager.PlaySound(
+                ServicesManager.Instance.SoundManager.Button
+            );
+            ServicesManager.Instance.CharacterContainer.SetSelectedCharacterIndex(
+                currentCharacterInforController.SequenceNumber
+            );
             LoadScene("Home", 0.25f);
         }
 
         public void OnClickCloseButton()
         {
-            ServicesManager.Instance.SoundManager.PlaySound(ServicesManager.Instance.SoundManager.Button);
+            ServicesManager.Instance.SoundManager.PlaySound(
+                ServicesManager.Instance.SoundManager.Button
+            );
             LoadScene("Home", 0.25f);
         }
     }

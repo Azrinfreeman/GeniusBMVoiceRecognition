@@ -46,6 +46,8 @@ public class PlayerInputController : MonoBehaviour
 
         btnSubmit.onClick.RemoveAllListeners();
         CurrentPlayerName.instance.ApplyName();
+
+        GameStartupController.instance.ApplyScoreAgain();
         yield return new WaitForSeconds(0);
         /*
         using (
