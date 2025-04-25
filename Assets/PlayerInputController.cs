@@ -39,7 +39,7 @@ public class PlayerInputController : MonoBehaviour
         GameStartupController.instance.SetAsCurrentPlayer(fullname, time);
 
         PlayerPrefs.SetInt("FirstTime", 1);
-        GameStartupController.instance.ApplyScoreAgain();
+        //GameStartupController.instance.ApplyScoreAgain();
 
         textInput.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "*Valid Name";
         textInput.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.green;
