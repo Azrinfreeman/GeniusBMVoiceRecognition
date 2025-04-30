@@ -22,30 +22,22 @@ public class PluginController : MonoBehaviour
     {
         if (CheckInternet.instance.isWifiConnected || CheckInternet.instance.isMobileConnected)
         {
-            if (togglePlugin.instance.isToggle)
-            {
-                //  Debug.Log("internet ");
-                voicePlugins[0].gameObject.SetActive(true);
-                voicePlugins[1].gameObject.SetActive(false);
-                micButtons[0].gameObject.SetActive(true);
-                micButtons[1].gameObject.SetActive(false);
-            }
-            else
-            {
-                //Debug.Log("not accurate ");
-                voicePlugins[0].gameObject.SetActive(false);
-                voicePlugins[1].gameObject.SetActive(true);
-                micButtons[0].gameObject.SetActive(false);
-                micButtons[1].gameObject.SetActive(true);
-            }
+
+            //  Debug.Log("internet ");
+            voicePlugins[0].gameObject.SetActive(true);
+            voicePlugins[1].gameObject.SetActive(false);
+            micButtons[0].gameObject.SetActive(true);
+            micButtons[1].gameObject.SetActive(false);
+
+
         }
         else
         {
             //     Debug.Log("no internet, not accureate");
             voicePlugins[0].gameObject.SetActive(false);
-            voicePlugins[1].gameObject.SetActive(true);
+            voicePlugins[1].gameObject.SetActive(false);
             micButtons[0].gameObject.SetActive(false);
-            micButtons[1].gameObject.SetActive(true);
+            micButtons[1].gameObject.SetActive(false);
         }
     }
 

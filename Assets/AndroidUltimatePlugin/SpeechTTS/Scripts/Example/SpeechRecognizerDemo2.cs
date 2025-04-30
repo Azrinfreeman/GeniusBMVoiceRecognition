@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ClawbearGames;
 using Gigadrillgames.AUP.Common;
 using Gigadrillgames.AUP.Helpers;
 using Gigadrillgames.AUP.Information;
@@ -108,53 +109,115 @@ namespace Gigadrillgames.AUP.SpeechTTS
                                     .compare[i]
                         );
         */
-                if (comparisonList[i] > 0.62 && comparisonList[i] < 0.73f)
+                if (PlayerPrefs.GetInt(PlayerPrefsKeys.PPK_SAVED_LEVEL) == 1)
                 {
-                    UnityEngine.Debug.Log("detecting");
 
-                    //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
-                    UnityEngine.Debug.Log("Betul");
-                    QuestionController.instance.CheckingCorrect(true);
-                    if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                    if (comparisonList[i] > 0.67 && comparisonList[i] < 0.75f)
                     {
-                        GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        UnityEngine.Debug.Log("detecting");
+                        GameObject.Find("result").GetComponent<TextMeshProUGUI>().text =
+                                                QuestionController
+                                                    .instance.questionLists[QuestionController.instance.numQuestion]
+                                                    .name.ToString();
+                        //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
+                        UnityEngine.Debug.Log("Betul");
+                        QuestionController.instance.CheckingCorrect(true);
+                        if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                        {
+                            GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        }
+                        float timeRemaining = 3f;
+                        while (timeRemaining > 0)
+                        {
+                            timeRemaining -= Time.deltaTime;
+                        }
+
+                        break;
                     }
-                    float timeRemaining = 3f;
-                    while (timeRemaining > 0)
+                    else if (comparisonList[i] >= 0.75f)
                     {
-                        timeRemaining -= Time.deltaTime;
+                        UnityEngine.Debug.Log("detectingBetter");
+
+                        GameObject.Find("result").GetComponent<TextMeshProUGUI>().text =
+                            QuestionController
+                                .instance.questionLists[QuestionController.instance.numQuestion]
+                                .name.ToString();
+
+                        //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
+                        UnityEngine.Debug.Log("Betul");
+                        QuestionController.instance.CheckingCorrect(true);
+                        if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                        {
+                            GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        }
+                        float timeRemaining = 3f;
+                        while (timeRemaining > 0)
+                        {
+                            timeRemaining -= Time.deltaTime;
+                        }
+
+                        break;
                     }
-
-                    break;
-                }
-                else if (comparisonList[i] > 0.73f)
-                {
-                    UnityEngine.Debug.Log("detectingBetter");
-
-                    GameObject.Find("result").GetComponent<TextMeshProUGUI>().text =
-                        QuestionController
-                            .instance.questionLists[QuestionController.instance.numQuestion]
-                            .name.ToString();
-
-                    //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
-                    UnityEngine.Debug.Log("Betul");
-                    QuestionController.instance.CheckingCorrect(true);
-                    if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                    else
                     {
-                        GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        QuestionController.instance.CheckingCorrect(false);
+                        // Debug.Log("Salah");
                     }
-                    float timeRemaining = 3f;
-                    while (timeRemaining > 0)
-                    {
-                        timeRemaining -= Time.deltaTime;
-                    }
-
-                    break;
                 }
                 else
                 {
-                    QuestionController.instance.CheckingCorrect(false);
-                    // Debug.Log("Salah");
+
+                    if (comparisonList[i] > 0.87 && comparisonList[i] < 0.9f)
+                    {
+                        UnityEngine.Debug.Log("detecting");
+                        GameObject.Find("result").GetComponent<TextMeshProUGUI>().text =
+                                                QuestionController
+                                                    .instance.questionLists[QuestionController.instance.numQuestion]
+                                                    .name.ToString();
+                        //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
+                        UnityEngine.Debug.Log("Betul");
+                        QuestionController.instance.CheckingCorrect(true);
+                        if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                        {
+                            GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        }
+                        float timeRemaining = 3f;
+                        while (timeRemaining > 0)
+                        {
+                            timeRemaining -= Time.deltaTime;
+                        }
+
+                        break;
+                    }
+                    else if (comparisonList[i] > 0.9f)
+                    {
+                        UnityEngine.Debug.Log("detectingBetter");
+
+                        GameObject.Find("result").GetComponent<TextMeshProUGUI>().text =
+                            QuestionController
+                                .instance.questionLists[QuestionController.instance.numQuestion]
+                                .name.ToString();
+
+                        //GameObject.Find("sin").transform.GetChild(0).GetComponent<Image>().color = Color.green;
+                        UnityEngine.Debug.Log("Betul");
+                        QuestionController.instance.CheckingCorrect(true);
+                        if (!GameObject.Find("correctSfx").GetComponent<AudioSource>().isPlaying)
+                        {
+                            GameObject.Find("correctSfx").GetComponent<AudioSource>().Play();
+                        }
+                        float timeRemaining = 3f;
+                        while (timeRemaining > 0)
+                        {
+                            timeRemaining -= Time.deltaTime;
+                        }
+
+                        break;
+                    }
+                    else
+                    {
+                        QuestionController.instance.CheckingCorrect(false);
+                        // Debug.Log("Salah");
+                    }
                 }
             }
         }

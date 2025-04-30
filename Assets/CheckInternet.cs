@@ -85,6 +85,7 @@ public class CheckInternet : MonoBehaviour
 
         if (internetPlugin.IsWifiConnected() || internetPlugin.IsMobileConnected())
         {
+            CanvasController.instance.internetWarning.gameObject.SetActive(false);
             isWifiConnected = true;
             if (wifiConnectionText != null)
             {
@@ -95,6 +96,7 @@ public class CheckInternet : MonoBehaviour
         }
         else
         {
+            CanvasController.instance.internetWarning.gameObject.SetActive(true);
             isWifiConnected = false;
             if (wifiConnectionText != null)
             {
