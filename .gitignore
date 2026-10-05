@@ -55,6 +55,12 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
+# Local crash dumps, Burst debug output, and macOS folder metadata
+# Ignore future files; already tracked content is unaffected.
+/mono_crash.*
+*_BurstDebugInformation_DoNotShip/
+.DS_Store
+
 # Builds
 *.apk
 *.aab
