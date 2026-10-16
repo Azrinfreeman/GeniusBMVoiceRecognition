@@ -24,6 +24,21 @@ The source snapshot uses **Unity 2022.3.60f1**, **C#**, **TextMesh Pro**, **Unit
 
 The matching algorithm uses normalized **Levenshtein string similarity**. This measures how closely the recognized text matches an accepted answer; it is not an acoustic pronunciation score or a measured speech-model confidence value. Acceptance thresholds differ between the Android and Whisper integrations and, for Android, by level.
 
+### From speech to feedback
+
+```mermaid
+flowchart LR
+    Speech[Spoken answer] --> Android[Android speech recognition]
+    Speech --> Whisper[Whisper microphone integration]
+    Android --> Match[Transcript comparison]
+    Whisper --> Match
+    Answers[Accepted prompt variants] --> Match
+    Match --> Feedback[Correct or incorrect feedback]
+    Feedback --> Progress[Question and round progression]
+```
+
+This is the source-level processing flow. The Android callback and Whisper integration each compare recognized text with the current question's accepted variants through `SimilarityCalculator`, then pass the result to `QuestionController`. They are separate integration paths; the diagram does not imply both run together or that automatic fallback works. Scene configuration, model availability, and device behavior still require the checks below.
+
 ## Explore the implementation
 
 | Area | Source |
